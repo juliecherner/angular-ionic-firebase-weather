@@ -8,3 +8,7 @@ Used techonologies:
   - Authentication
   - Cloud Firestore (not Realtime Database)
   - Storage (for images)
+
+For CI were used:
+
+- Husky, Eslint, Prettier, Tests (components and E2E with Cypress)
