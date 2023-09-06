@@ -14,7 +14,7 @@ export class LoginPage {
   constructor(
     private validationService: ValidationService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   email: string = '';
@@ -87,7 +87,7 @@ export class LoginPage {
       this.email,
       this.password,
       this.agreement,
-      currentMode
+      currentMode,
     );
     if (this.customValidation.error) return;
 
@@ -97,7 +97,7 @@ export class LoginPage {
           await this.authService.login(
             this.email,
             this.password,
-            this.toRemember
+            this.toRemember,
           );
           this.showPopup(POPUP_TYPE.SUCCESS);
           this.router.navigate(['/tabs/tab1']);

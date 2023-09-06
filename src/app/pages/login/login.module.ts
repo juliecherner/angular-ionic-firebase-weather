@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoginPage } from './login.page';
-import { PopupComponentModule } from "../../components/popup/popup.module"
+import { PopupComponentModule } from '../../components/popup/popup.module';
 
 import { LoginPageRoutingModule } from './login-routing.module';
 
@@ -13,8 +13,8 @@ import { LoginPageRoutingModule } from './login-routing.module';
     CommonModule,
     FormsModule,
     LoginPageRoutingModule,
-    PopupComponentModule
+    PopupComponentModule,
   ],
-  declarations: [LoginPage]
+  declarations: [LoginPage],
 })
 export class LoginPageModule {}

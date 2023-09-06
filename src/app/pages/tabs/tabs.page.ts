@@ -8,9 +8,10 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['tabs.page.scss'],
 })
 export class TabsPage {
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) {}
 
-  onInit() {
-    
-  }
+  onInit() {}
 }

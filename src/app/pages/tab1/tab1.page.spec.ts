@@ -12,7 +12,7 @@ describe('Tab1Page', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [Tab1Page],
-      imports: [IonicModule.forRoot(), PhotoloadComponentModule]
+      imports: [IonicModule.forRoot(), PhotoloadComponentModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Tab1Page);

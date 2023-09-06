@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 
-import {PhotoloadComponentModule} from "../../components/photoload/photoload.module"
+import { PhotoloadComponentModule } from '../../components/photoload/photoload.module';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 
@@ -14,8 +14,8 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
     CommonModule,
     FormsModule,
     Tab1PageRoutingModule,
-    PhotoloadComponentModule
+    PhotoloadComponentModule,
   ],
-  declarations: [Tab1Page]
+  declarations: [Tab1Page],
 })
 export class Tab1PageModule {}

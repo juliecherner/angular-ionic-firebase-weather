@@ -12,5 +12,5 @@ type ValidationItem = Record<ValidationKey, ValidationOutput>;
 export enum LOGIN_MODE {
   'SIGNIN' = 'signin',
   'SIGNUP' = 'signup',
-  "RESTORE_PASSWORD" = 'restore-password'
+  'RESTORE_PASSWORD' = 'restore-password',
 }

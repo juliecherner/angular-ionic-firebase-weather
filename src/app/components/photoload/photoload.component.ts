@@ -5,10 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './photoload.component.html',
   styleUrls: ['./photoload.component.scss'],
 })
-export class PhotoloadComponent  implements OnInit {
-
-  constructor() { }
+export class PhotoloadComponent implements OnInit {
+  constructor() {}
 
   ngOnInit() {}
-
 }

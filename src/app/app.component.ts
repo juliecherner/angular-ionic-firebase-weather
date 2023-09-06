@@ -8,9 +8,12 @@ import { AuthService } from './services/auth/auth.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {
     const isLogged = this.authService.isLoggedIn();
-    if (!isLogged) this.router.navigate(['/login'])
+    if (!isLogged) this.router.navigate(['/login']);
   }
 
   onInit() {}

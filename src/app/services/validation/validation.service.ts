@@ -8,9 +8,8 @@ export class ValidationService {
     email: string,
     password: string,
     agreement: boolean,
-    mode: Record<'mode', LOGIN_MODE>
+    mode: Record<'mode', LOGIN_MODE>,
   ): CustomValidation {
-
     const isEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email);
     const isPassword = /^.{8,}$/.test(password);
 
@@ -78,7 +77,7 @@ export class ValidationService {
         validationData?.email?.error ||
         validationData?.password?.error ||
         validationData?.agreement?.error,
-      data: validationData
+      data: validationData,
     };
   }
 }

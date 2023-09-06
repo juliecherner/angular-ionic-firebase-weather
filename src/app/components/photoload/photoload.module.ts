@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { PhotoloadComponent } from './photoload.component';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule],
+  imports: [CommonModule, FormsModule, IonicModule],
   declarations: [PhotoloadComponent],
-  exports: [PhotoloadComponent]
+  exports: [PhotoloadComponent],
 })
 export class PhotoloadComponentModule {}

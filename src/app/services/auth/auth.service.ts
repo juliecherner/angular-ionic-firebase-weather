@@ -23,7 +23,7 @@ export class AuthService {
   async signup(email: string, password: string) {
     return await this.firebaseAuth.createUserWithEmailAndPassword(
       email,
-      password
+      password,
     );
   }
 

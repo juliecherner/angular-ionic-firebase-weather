@@ -1,7 +1,9 @@
-
 <ion-content [fullscreen]="true">
-
-  <app-popup *ngIf="toShowPopup.status" [type]="toShowPopup.type" [text]="toShowPopup.text"></app-popup>
+  <app-popup
+    *ngIf="toShowPopup.status"
+    [type]="toShowPopup.type"
+    [text]="toShowPopup.text"
+  ></app-popup>
 
   <ion-list>
     <ion-item>
@@ -80,6 +82,5 @@
     <ion-note color="tertiary" (click)="changeRestoreMode()">
       {{ toRestore ? "Return to login": "Forgot password?"}}
     </ion-note>
-
   </ion-list>
 </ion-content>

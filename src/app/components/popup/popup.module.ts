@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { PopupComponent } from './popup.component';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule],
+  imports: [CommonModule, FormsModule, IonicModule],
   declarations: [PopupComponent],
-  exports: [PopupComponent]
+  exports: [PopupComponent],
 })
 export class PopupComponentModule {}

@@ -7,7 +7,7 @@ import { POPUP_COLOR, Popup } from '../../types/popup';
   styleUrls: ['./popup.component.scss'],
 })
 export class PopupComponent implements OnInit {
-  @Input() type: Popup | "" = '';
+  @Input() type: Popup | '' = '';
   @Input() text = '';
   title: string = '';
   color: string = '';
