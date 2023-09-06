@@ -1,16 +1,85 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-     Logggging
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
+  <app-popup *ngIf="toShowPopup.status" [type]="toShowPopup.type" [text]="toShowPopup.text"></app-popup>
+
+  <ion-list>
+    <ion-item>
+      <ion-input
+        labelPlacement="floating"
+        type="string"
+        placeholder="Enter you email"
+        [(ngModel)]="email"
+      >
+        <div slot="label">
+          Email <ion-text color="danger">(Required)</ion-text>
+        </div>
+      </ion-input>
+    </ion-item>
+    <ion-text *ngIf="customValidation?.data?.email?.error" color="danger"
+      >{{" "}}{{customValidation?.data?.email?.text}}</ion-text
+    >
+
+    <ion-item *ngIf="!toRestore">
+      <ion-input
+        labelPlacement="floating"
+        type="string"
+        placeholder="Enter your password"
+        [(ngModel)]="password"
+      >
+        <div slot="label">
+          Password <ion-text color="danger">(Required)</ion-text>
+        </div>
+      </ion-input>
+    </ion-item>
+
+    <ion-text *ngIf="customValidation?.data?.password?.error" color="danger"
+      >{{" "}}{{customValidation?.data?.password?.text}}</ion-text
+    >
+
+    <ion-checkbox
+      *ngIf="modeIsSignIn && !toRestore"
+      [(ngModel)]="toRemember"
+      labelPlacement="end"
+      >Remember me</ion-checkbox
+    >
+
+    <ion-checkbox
+      *ngIf="!modeIsSignIn && !toRestore"
+      [(ngModel)]="agreement"
+      labelPlacement="end"
+      >I agree with terms and conditions</ion-checkbox
+    >
+
+    <ion-text *ngIf="customValidation?.data?.agreement?.error" color="danger"
+      >{{" "}}{{customValidation?.data?.agreement?.text}}</ion-text
+    >
+
+    <ion-button
+      *ngIf="!toRestore"
+      shape="round"
+      fill="outline"
+      [disabled]="isLoading"
+      (click)="login()"
+      >{{ modeIsSignIn ? "Sign in" : "Sign up"}}</ion-button
+    >
+
+    <ion-button
+      *ngIf="toRestore"
+      shape="round"
+      fill="outline"
+      [disabled]="isLoading"
+      (click)="login()"
+      >Restore password</ion-button
+    >
+
+    <ion-note color="tertiary" (click)="changeLoginMode()">
+      {{ modeIsSignIn ? "Not signed up yet?" : "Log in existing account"}}
+    </ion-note>
+
+    <ion-note color="tertiary" (click)="changeRestoreMode()">
+      {{ toRestore ? "Return to login": "Forgot password?"}}
+    </ion-note>
+
+  </ion-list>
 </ion-content>

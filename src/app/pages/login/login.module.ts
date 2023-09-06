@@ -2,17 +2,19 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab2Page } from './login.page';
+import { LoginPage } from './login.page';
+import { PopupComponentModule } from "../../components/popup/popup.module"
 
-import { Tab2PageRoutingModule } from './login-routing.module';
+import { LoginPageRoutingModule } from './login-routing.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    Tab2PageRoutingModule
+    LoginPageRoutingModule,
+    PopupComponentModule
   ],
-  declarations: [Tab2Page]
+  declarations: [LoginPage]
 })
 export class LoginPageModule {}

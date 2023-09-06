@@ -1,0 +1,26 @@
+ion-list {
+  margin-top: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1vh;
+
+  ion-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1vh;
+
+    ion-text {
+      font-size: inherit;
+    }
+  }
+
+  ion-text {
+    font-size: 14px;
+  }
+
+  ion-button, ion-checkbox {
+    padding: 2vh;
+  }
+}
