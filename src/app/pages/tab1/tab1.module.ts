@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
-
-import { PhotoloadComponentModule } from '../../components/photoload/photoload.module';
-
 import { Tab1PageRoutingModule } from './tab1-routing.module';
+import { PopupComponentModule } from '../../components/popup/popup.module';
+
 
 @NgModule({
   imports: [
@@ -14,7 +13,7 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
     CommonModule,
     FormsModule,
     Tab1PageRoutingModule,
-    PhotoloadComponentModule,
+    PopupComponentModule
   ],
   declarations: [Tab1Page],
 })

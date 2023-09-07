@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ValidationService } from '../../services/validation/validation.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { CustomValidation, LOGIN_MODE } from '../../types/customValidation';
 import { ActionResult, POPUP_TYPE } from '../../types/popup';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,7 @@ export class LoginPage {
   constructor(
     private validationService: ValidationService,
     private authService: AuthService,
+    private localStorageService: LocalStorageService,
     private router: Router,
   ) {}
 
@@ -29,7 +32,7 @@ export class LoginPage {
 
   toShowPopup: ActionResult = {
     status: false,
-    type: 'error',
+    type: POPUP_TYPE.ERROR,
     text: '',
   };
 
@@ -77,10 +80,11 @@ export class LoginPage {
         (type === POPUP_TYPE.SUCCESS ? 'Succeeded!' : 'Unexpected error'),
     };
 
-    const delayMiliseconds = type === POPUP_TYPE.SUCCESS ? 2000 : 7000;
+    const delayMiliseconds = type === POPUP_TYPE.SUCCESS ? 3000 : 7000;
     this.clearPopupData(delayMiliseconds);
   }
 
+ 
   async login() {
     const currentMode = this.defineAuthMode();
     this.customValidation = this.validationService.customFormValidation(
@@ -96,10 +100,11 @@ export class LoginPage {
         try {
           await this.authService.login(
             this.email,
-            this.password,
-            this.toRemember,
+            this.password
           );
-          this.showPopup(POPUP_TYPE.SUCCESS);
+          if (this.toRemember) await this.localStorageService.saveUserInfo(this.email);
+          
+          this.showPopup(POPUP_TYPE.SUCCESS, "Succeeded!");
           this.router.navigate(['/tabs/tab1']);
         } catch (error: any) {
           this.showPopup(POPUP_TYPE.ERROR, error);
@@ -109,7 +114,7 @@ export class LoginPage {
       case LOGIN_MODE.SIGNUP:
         try {
           await this.authService.signup(this.email, this.password);
-          this.showPopup(POPUP_TYPE.SUCCESS);
+          this.showPopup(POPUP_TYPE.SUCCESS, "Signed up successfully. Now log in");
           this.changeLoginMode();
         } catch (error: any) {
           this.showPopup(POPUP_TYPE.ERROR, error);
@@ -119,7 +124,7 @@ export class LoginPage {
       case LOGIN_MODE.RESTORE_PASSWORD:
         try {
           await this.authService.restorePassword(this.email);
-          this.showPopup(POPUP_TYPE.SUCCESS);
+          this.showPopup(POPUP_TYPE.SUCCESS, "Instuctions are send to email");
           this.changeRestoreMode();
         } catch {
           this.showPopup(POPUP_TYPE.ERROR);

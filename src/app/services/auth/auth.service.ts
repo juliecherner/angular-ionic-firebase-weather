@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 import { ActionResult } from '../../types/popup';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(public firebaseAuth: AngularFireAuth) {}
+  constructor(
+    public firebaseAuth: AngularFireAuth,
+    private localStorageService: LocalStorageService,
+  ) {}
 
   isLoading: boolean = false;
   error: ActionResult = {
@@ -15,8 +19,7 @@ export class AuthService {
     text: '',
   };
 
-  async login(email: string, password: string, toRemember: boolean) {
-    //set to local storage
+  async login(email: string, password: string) {
     return await this.firebaseAuth.signInWithEmailAndPassword(email, password);
   }
 
@@ -31,8 +34,8 @@ export class AuthService {
     return await this.firebaseAuth.sendPasswordResetEmail(email);
   }
 
-  isLoggedIn() {
-    //get from local storage
-    return false;
+  async isLoggedIn() {
+    return await this.localStorageService.isUser();
   }
+
 }
