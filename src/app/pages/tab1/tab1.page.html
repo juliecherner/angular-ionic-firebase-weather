@@ -17,7 +17,8 @@
         >Hi, {{name}}! Welcome to weather app!</ion-card-title
       >
       <ion-card-subtitle
-        >Press GET CURRENT WEATHER button and then take a photo of the sky.</ion-card-subtitle
+        >Press GET CURRENT WEATHER button and then take a photo of the
+        sky.</ion-card-subtitle
       >
       <ion-card-title color="primary">What can you do?</ion-card-title>
     </ion-card-header>
@@ -60,10 +61,9 @@
 
   <ion-button color="tertiary" (click)="showCurrentWeather()"
     >Current weather and sky photo{{" "}}<ion-icon
-    name="partly-sunny-outline"
-  ></ion-icon
-> </ion-button
-  >
+      name="partly-sunny-outline"
+    ></ion-icon>
+  </ion-button>
 
   <app-popup
     *ngIf="toShowPopup.status"

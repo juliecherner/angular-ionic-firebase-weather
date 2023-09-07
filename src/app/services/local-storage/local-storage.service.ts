@@ -20,12 +20,12 @@ export class LocalStorageService {
     this._storage?.set(key, value);
   }
 
-   public async isUser() {
-    return Boolean(await this._storage?.get('weather-app-user'))
+  public async isUser() {
+    return Boolean(await this._storage?.get('weather-app-user'));
   }
 
   public async getUserName() {
-    return (await this._storage?.get('weather-app-user'))
+    return await this._storage?.get('weather-app-user');
   }
 
   public deleteLocalUser() {
@@ -35,5 +35,4 @@ export class LocalStorageService {
   async saveUserInfo(email: string) {
     await this.set('weather-app-user', email);
   }
-
 }

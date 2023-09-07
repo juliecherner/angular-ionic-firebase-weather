@@ -11,4 +11,3 @@ Used techonologies:
   - Storage (for images)
 
 For CI were used: Husky, Eslint, Prettier, Tests (components and E2E with Cypress)
-

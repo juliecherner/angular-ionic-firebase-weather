@@ -19,7 +19,7 @@ export class Tab1Page implements OnInit {
   name: string = '';
   currentWeather: any = null;
   toTakePhoto: boolean = false;
-  a: any = ''
+  a: any = '';
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -35,14 +35,13 @@ export class Tab1Page implements OnInit {
   }
 
   async showCurrentWeather() {
-   const currentPosition = await this.geolocationService.getCurrentPosition();
+    const currentPosition = await this.geolocationService.getCurrentPosition();
 
- 
     //   const currentPosition = {
     //     latitude: 67,
     //     longitude: 1
     // }
-  
+
     this.currentWeather = this.geolocationService
       .getWeatherByCurrentPosition(currentPosition)
       .subscribe({
@@ -62,7 +61,7 @@ export class Tab1Page implements OnInit {
         },
       });
 
-      this.showAndHidePopup(POPUP_TYPE.ERROR, "blablbla");
+    this.showAndHidePopup(POPUP_TYPE.ERROR, 'blablbla');
   }
 
   showAndHidePopup(type: POPUP_TYPE, text: string) {
@@ -82,15 +81,14 @@ export class Tab1Page implements OnInit {
   }
 
   async takePhoto() {
-    const photo=  (await this.photoService
+    const photo = await this.photoService
       .takePicture()
-      .then((data) => {  
-        this.a = data?.base64String
-        console.log("data", data)})
-      .catch(() => {}))
+      .then((data) => {
+        this.a = data?.base64String;
+        console.log('data', data);
+      })
+      .catch(() => {});
   }
-
-
 
   ngOnDestroy() {
     this.currentWeather.unsubscribe();

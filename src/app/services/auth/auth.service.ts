@@ -37,5 +37,4 @@ export class AuthService {
   async isLoggedIn() {
     return await this.localStorageService.isUser();
   }
-
 }

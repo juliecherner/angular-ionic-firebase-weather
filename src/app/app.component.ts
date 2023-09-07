@@ -12,7 +12,7 @@ export class AppComponent {
     private authService: AuthService,
     private router: Router,
   ) {
-    const isLogged =  this.authService.isLoggedIn();
+    const isLogged = this.authService.isLoggedIn();
     if (!isLogged) this.router.navigate(['/login']);
   }
 
