@@ -34,8 +34,10 @@
             "styles": ["src/theme/variables.scss", "src/global.scss"],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "@ionic/storage-angular", "localforage", "@ionic/storage"
-           ]
+              "@ionic/storage-angular",
+              "localforage",
+              "@ionic/storage"
+            ]
           },
           "configurations": {
             "production": {

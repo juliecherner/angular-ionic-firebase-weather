@@ -14,6 +14,4 @@ export class GeolocationService {
       longitude: position?.coords?.longitude,
     };
   }
-
-
 }

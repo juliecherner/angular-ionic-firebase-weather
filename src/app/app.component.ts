@@ -12,8 +12,10 @@ export class AppComponent {
     private authService: AuthService,
     private router: Router,
   ) {
-      this.authService.isLoggedIn().then((result: boolean) => {
-      result ? this.router.navigate(['/tabs']) : this.router.navigate(['/login']);
+    this.authService.isLoggedIn().then((result: boolean) => {
+      result
+        ? this.router.navigate(['/tabs'])
+        : this.router.navigate(['/login']);
     });
   }
 }

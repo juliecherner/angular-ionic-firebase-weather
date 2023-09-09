@@ -5,14 +5,11 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
   providedIn: 'root',
 })
 export class ImageStorageService {
+  private basePath = '/uploads';
 
-private basePath = '/uploads';
+  constructor(private storage: AngularFireStorage) {}
 
-
-constructor(private storage: AngularFireStorage) { }
-
-getImageUrl(){
-  const storageRef = this.storage.ref(this.basePath);  
-}
-
+  getImageUrl() {
+    const storageRef = this.storage.ref(this.basePath);
+  }
 }

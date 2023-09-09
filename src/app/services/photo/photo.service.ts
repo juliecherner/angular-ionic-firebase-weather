@@ -26,5 +26,4 @@ export class PhotoService {
     // // Can be set to the src of an image now
     //imageElement.src = imageUrl;
   };
-
 }

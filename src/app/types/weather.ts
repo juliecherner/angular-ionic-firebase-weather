@@ -1,5 +1,5 @@
 export type Weather = {
-    timestamp: number,
+  timestamp: number;
   date: string;
   lastUpdated: string;
   place: string;

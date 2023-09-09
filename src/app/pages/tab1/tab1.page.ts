@@ -7,7 +7,7 @@ import { PhotoService } from 'src/app/services/photo/photo.service';
 import { WeatherService } from 'src/app/services/weather/weather.service';
 import { PopupService } from 'src/app/services/popup/popup.service';
 import { DataStorageService } from 'src/app/services/data-storage/data-storage.service';
-import {AuthService} from "src/app/services/auth/auth.service";
+import { AuthService } from 'src/app/services/auth/auth.service';
 //import { ImageStorageService } from 'src/app/services/image-storage/image-storage.service';
 import { ActionResult, POPUP_TYPE } from '../../types/popup';
 import { Weather } from '../../types/weather';
@@ -39,14 +39,11 @@ export class Tab1Page implements OnInit, OnDestroy {
     private router: Router,
     private popupService: PopupService,
     private dataStorageService: DataStorageService,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   async ngOnInit() {
-    this.name = (await this.authService.getUserLogin()).replace(
-      /@.*$/,
-      '',
-    );
+    this.name = (await this.authService.getUserLogin()).replace(/@.*$/, '');
   }
 
   async showCurrentWeather() {

@@ -18,8 +18,8 @@ export class WeatherService {
     );
   }
 
-  getCurrentTimestamp(){
-    return Math.floor((new Date()).getTime() / 1000);
+  getCurrentTimestamp() {
+    return Math.floor(new Date().getTime() / 1000);
   }
 
   transformResult(weather: any): Weather {

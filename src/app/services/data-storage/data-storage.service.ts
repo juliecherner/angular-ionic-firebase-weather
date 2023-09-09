@@ -32,7 +32,6 @@ export class DataStorageService {
       .list('/weatherReports', (ref) =>
         ref.orderByChild('user').equalTo(userLogin),
       )
-      .valueChanges()
-      
+      .valueChanges();
   }
 }

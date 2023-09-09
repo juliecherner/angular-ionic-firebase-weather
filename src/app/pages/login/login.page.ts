@@ -94,7 +94,7 @@ export class LoginPage implements OnDestroy {
       case LOGIN_MODE.SIGNIN:
         try {
           await this.authService.login(this.email, this.password);
-          await this.manageUserSave(this.email, this.toRemember)
+          await this.manageUserSave(this.email, this.toRemember);
           this.router.navigate(['/tabs/tab1']);
         } catch (error: any) {
           this.showAndHidePopup(POPUP_TYPE.ERROR, error, 5000);

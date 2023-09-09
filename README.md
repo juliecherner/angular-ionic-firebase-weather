@@ -9,6 +9,7 @@ Used techonologies:
 - Firebase services: Authentication, Realtime Database, Firebase Storage (for images)
 
 Angular project includes:
+
 - 5 pages (main, login, tabs, current weather and history page)
 - 2 components (popup, loader)
 - 1 guard (auth guard for all not login routes)
@@ -23,18 +24,25 @@ Project is optimized for Web
 Run project
 
 Install Ionic CLI
+
 ```
 npm install -g @ionic/cli
 ```
+
 Install dependencies
+
 ```
 npm i
 ```
+
 Build project, copy and update
+
 ```
 ionic capacitor sync
 ```
+
 Open in the browser
+
 ```
 npm run start
 ```
@@ -42,11 +50,16 @@ npm run start
 Future steps: optimize for Android or iOS and then:
 
 Build project for Android and iOS
+
 ```
 ionic capacitor build android
 ionic capacitor build ios
 Open IDE for(for pre-installed IDE)
 ```
+
 ionic capacitor open android
 ionic capacitor open ios
+
+```
+
 ```
