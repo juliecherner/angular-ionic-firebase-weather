@@ -89,7 +89,7 @@ export class LoginPage implements OnDestroy {
       currentMode,
     );
     if (this.customValidation.error) return;
-
+    this.isLoading = true;
     switch (currentMode.mode) {
       case LOGIN_MODE.SIGNIN:
         try {
@@ -97,6 +97,7 @@ export class LoginPage implements OnDestroy {
           await this.manageUserSave(this.email, this.toRemember);
           this.router.navigate(['/tabs/tab1']);
         } catch (error: any) {
+          this.isLoading = false;
           this.showAndHidePopup(POPUP_TYPE.ERROR, error, 5000);
         }
 
@@ -111,6 +112,7 @@ export class LoginPage implements OnDestroy {
           );
           this.changeLoginMode();
         } catch (error: any) {
+          this.isLoading = false;
           this.showAndHidePopup(POPUP_TYPE.ERROR, error, 7000);
         }
 
@@ -125,6 +127,8 @@ export class LoginPage implements OnDestroy {
           );
           this.changeRestoreMode();
         } catch (error: any) {
+          this.isLoading = false;
+
           this.showAndHidePopup(POPUP_TYPE.ERROR, error, 3000);
         }
 
@@ -132,6 +136,9 @@ export class LoginPage implements OnDestroy {
       default:
         break;
     }
+
+    this.isLoading = false;
+
   }
 
   ngOnDestroy() {

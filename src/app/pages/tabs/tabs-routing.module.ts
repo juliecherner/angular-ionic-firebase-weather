@@ -10,12 +10,12 @@ const routes: Routes = [
       {
         path: 'tab1',
         loadChildren: () =>
-          import('../tab1/tab1.module').then((m) => m.Tab1PageModule),
+          import('../current-weather/current-weather.module').then((m) => m.CurrentWeatherPageModule),
       },
       {
         path: 'tab2',
         loadChildren: () =>
-          import('../tab2/tab2.module').then((m) => m.Tab2PageModule),
+          import('../history/history.module').then((m) => m.HistoryPageModule),
       },
       {
         path: '',

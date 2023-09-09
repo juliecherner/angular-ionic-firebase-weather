@@ -2,21 +2,19 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LoginPage } from './login.page';
-import { PopupComponentModule } from '../../components/popup/popup.module';
+import { HistoryPage } from './history.page';
 import { LoaderComponentModule } from '../../components/loader/loader.module';
 
-import { LoginPageRoutingModule } from './login-routing.module';
+import { HistoryPageRoutingModule } from './history-routing.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    LoginPageRoutingModule,
-    PopupComponentModule,
-    LoaderComponentModule
+    HistoryPageRoutingModule,
+    LoaderComponentModule,
   ],
-  declarations: [LoginPage],
+  declarations: [HistoryPage],
 })
-export class LoginPageModule {}
+export class HistoryPageModule {}

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 import { timer, Subscription } from 'rxjs';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
@@ -13,11 +14,11 @@ import { ActionResult, POPUP_TYPE } from '../../types/popup';
 import { Weather } from '../../types/weather';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss'],
+  selector: 'app-current-weather',
+  templateUrl: 'current-weather.page.html',
+  styleUrls: ['current-weather.page.scss'],
 })
-export class Tab1Page implements OnInit, OnDestroy {
+export class CurrentWeatherPage implements OnInit, OnDestroy {
   toShowPopup: ActionResult = {
     status: false,
     type: POPUP_TYPE.ERROR,
@@ -28,7 +29,7 @@ export class Tab1Page implements OnInit, OnDestroy {
   toTakePhoto: boolean = false;
   weather: Weather | null = null;
   timerPhotoSubscription: Subscription | null = null;
-  maxCameraRetries: number = 5;
+  maxCameraRetries: number = 3;
   timePopupSubscription: Subscription | null = null;
 
   constructor(
@@ -40,6 +41,7 @@ export class Tab1Page implements OnInit, OnDestroy {
     private popupService: PopupService,
     private dataStorageService: DataStorageService,
     private authService: AuthService,
+    private location: Location
   ) {}
 
   async ngOnInit() {
@@ -139,6 +141,9 @@ export class Tab1Page implements OnInit, OnDestroy {
     this.router.navigate(['/login']);
   }
 
+  backClicked() {
+    this.location.back();
+  }
   ngOnDestroy() {
     this.currentWeather?.unsubscribe();
     this.timerPhotoSubscription?.unsubscribe();

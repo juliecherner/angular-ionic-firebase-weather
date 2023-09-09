@@ -1,16 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Tab 1 </ion-title>
+    <div class="chevron-back-outline" (click)="backClicked()">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+      <ion-note>Back</ion-note>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-
   <ion-card>
     <ion-card-header>
       <ion-card-title color="tertiary"
@@ -59,12 +56,14 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button color="tertiary" (click)="showCurrentWeather()"
-    >Weather and sky photo{{" "}}<ion-icon
-      name="partly-sunny-outline"
-    ></ion-icon>
-  </ion-button>
-
+  <ion-col>
+    <ion-button color="tertiary" (click)="showCurrentWeather()"
+      >Weather & sky{{" "}}<ion-icon name="partly-sunny-outline"></ion-icon>
+    </ion-button>
+    <ion-button color="tertiary" (click)="logout()"
+      >Logout
+    </ion-button></ion-col
+  >
   <app-popup
     *ngIf="toShowPopup.status"
     [type]="toShowPopup.type"
@@ -91,6 +90,4 @@
       <ion-item>Humidity: {{weather.main.humidity}}</ion-item>
     </ion-card-content>
   </ion-card>
-
-  <ion-button color="tertiary" (click)="logout()">Logout </ion-button>
 </ion-content>

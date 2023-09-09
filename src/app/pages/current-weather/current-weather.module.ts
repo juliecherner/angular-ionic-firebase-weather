@@ -2,8 +2,8 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab1Page } from './tab1.page';
-import { Tab1PageRoutingModule } from './tab1-routing.module';
+import { CurrentWeatherPage } from './current-weather.page';
+import { CurrentWeatherPageRoutingModule } from './current-weather-routing.module';
 import { PopupComponentModule } from '../../components/popup/popup.module';
 
 @NgModule({
@@ -11,9 +11,9 @@ import { PopupComponentModule } from '../../components/popup/popup.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    Tab1PageRoutingModule,
+    CurrentWeatherPageRoutingModule,
     PopupComponentModule,
   ],
-  declarations: [Tab1Page],
+  declarations: [CurrentWeatherPage],
 })
-export class Tab1PageModule {}
+export class CurrentWeatherPageModule {}

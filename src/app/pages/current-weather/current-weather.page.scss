@@ -1,0 +1,30 @@
+.chevron-back-outline {
+  margin-left: 2vw;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1vw;
+}
+
+ion-content {
+  ion-card-title,
+  ion-card-subtitle {
+    text-align: center;
+  }
+
+  ion-card {
+    ion-card-subtitle {
+      text-align: center;
+    }
+  }
+
+  ion-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  ion-icon {
+    margin-right: 1vw;
+    margin-left: 1vw;
+  }
+}
