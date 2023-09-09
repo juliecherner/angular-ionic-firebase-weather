@@ -19,6 +19,8 @@ export class AuthService {
     text: '',
   };
 
+  user: string | null = null;
+
   async login(email: string, password: string) {
     return await this.firebaseAuth.signInWithEmailAndPassword(email, password);
   }
@@ -34,7 +36,25 @@ export class AuthService {
     return await this.firebaseAuth.sendPasswordResetEmail(email);
   }
 
+  setSessionUser(userLogin: string) {
+    this.user = userLogin;
+  }
+
+  isSessionUser() {
+    return Boolean(this.user);
+  }
+
   async isLoggedIn() {
-    return await this.localStorageService.isUser();
+    return (await this.localStorageService.isUser()) || this.isSessionUser();
+  }
+
+  getSessionUserLogin() {
+    return this.user;
+  }
+
+  async getUserLogin(): Promise<string> {
+    return (await this.localStorageService.isUser())
+      ? this.localStorageService.getUserLogin()
+      : this.getSessionUserLogin();
   }
 }

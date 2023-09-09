@@ -32,7 +32,10 @@
               }
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "@ionic/storage-angular", "localforage", "@ionic/storage"
+           ]
           },
           "configurations": {
             "production": {
@@ -80,7 +83,7 @@
               "browserTarget": "app:build:development"
             },
             "ci": {
-              "progress": false
+              // "progress": false
             }
           },
           "defaultConfiguration": "development"

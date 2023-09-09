@@ -24,7 +24,7 @@ export class LocalStorageService {
     return Boolean(await this._storage?.get('weather-app-user'));
   }
 
-  public async getUserName() {
+  public async getUserLogin() {
     return await this._storage?.get('weather-app-user');
   }
 

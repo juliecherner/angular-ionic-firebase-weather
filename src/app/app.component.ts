@@ -12,9 +12,8 @@ export class AppComponent {
     private authService: AuthService,
     private router: Router,
   ) {
-    const isLogged = this.authService.isLoggedIn();
-    if (!isLogged) this.router.navigate(['/login']);
+      this.authService.isLoggedIn().then((result: boolean) => {
+      result ? this.router.navigate(['/tabs']) : this.router.navigate(['/login']);
+    });
   }
-
-  onInit() {}
 }

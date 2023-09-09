@@ -60,7 +60,7 @@
   </ion-card>
 
   <ion-button color="tertiary" (click)="showCurrentWeather()"
-    >Current weather and sky photo{{" "}}<ion-icon
+    >Weather and sky photo{{" "}}<ion-icon
       name="partly-sunny-outline"
     ></ion-icon>
   </ion-button>
@@ -70,4 +70,23 @@
     [type]="toShowPopup.type"
     [text]="toShowPopup.text"
   ></app-popup>
+
+  <ion-card *ngIf="weather && weather.main">
+    <ion-card-title color="success"
+      >Today in {{weather.place}}, {{weather.country}}</ion-card-title
+    >
+    <ion-card-subtitle color="primary">Date: {{weather.date}}</ion-card-subtitle>
+
+    <ion-card-subtitle color="primary">Last updated: {{weather.lastUpdated}}</ion-card-subtitle>
+    <ion-card-content>
+      <ion-item>Temperature: {{weather.main.temp}}</ion-item>
+      <ion-item>Feels like: {{weather.main.feels_like}}</ion-item>
+      <ion-item>Min: {{weather.main.temp_min}}</ion-item>
+      <ion-item>Max: {{weather.main.temp_max}}</ion-item>
+      <ion-item>Pressure: {{weather.main.pressure}}</ion-item>
+      <ion-item>Humidity: {{weather.main.humidity}}</ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button color="tertiary" (click)="logout()">Logout </ion-button>
 </ion-content>

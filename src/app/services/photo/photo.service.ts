@@ -7,11 +7,11 @@ import { Camera, CameraSource, CameraResultType } from '@capacitor/camera';
 export class PhotoService {
   constructor() {}
 
-  takePicture = async () => {
+  take = async () => {
     return await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
-      resultType: CameraResultType.Base64,
+      resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera,
     });
 
@@ -27,5 +27,4 @@ export class PhotoService {
     //imageElement.src = imageUrl;
   };
 
-  async savePhotoToBlob() {}
 }
