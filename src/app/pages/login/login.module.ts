@@ -15,7 +15,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
     FormsModule,
     LoginPageRoutingModule,
     PopupComponentModule,
-    LoaderComponentModule
+    LoaderComponentModule,
   ],
   declarations: [LoginPage],
 })

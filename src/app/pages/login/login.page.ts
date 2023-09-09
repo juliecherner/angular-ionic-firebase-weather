@@ -138,7 +138,6 @@ export class LoginPage implements OnDestroy {
     }
 
     this.isLoading = false;
-
   }
 
   ngOnDestroy() {

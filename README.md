@@ -56,11 +56,12 @@ ionic capacitor build android
 ionic capacitor build ios
 
 ```
+
 Open IDE for(for pre-installed IDE)
+
 ```
 
 ionic capacitor open android
 ionic capacitor open ios
 
 ```
-

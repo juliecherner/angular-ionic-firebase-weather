@@ -10,7 +10,9 @@ const routes: Routes = [
       {
         path: 'tab1',
         loadChildren: () =>
-          import('../current-weather/current-weather.module').then((m) => m.CurrentWeatherPageModule),
+          import('../current-weather/current-weather.module').then(
+            (m) => m.CurrentWeatherPageModule,
+          ),
       },
       {
         path: 'tab2',

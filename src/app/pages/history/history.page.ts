@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { DataStorageService } from 'src/app/services/data-storage/data-storage.service';
 import { Weather } from '../../types/weather';
@@ -16,7 +16,10 @@ export class HistoryPage implements OnDestroy {
   isLoading: boolean = false;
   filePath: string =
     'https://www.vecteezy.com/photo/24298640-panoramic-picture-from-gardens-by-the-bay-in-singapore-during-daytime';
-  constructor(private dataStorageService: DataStorageService, private location: Location) {}
+  constructor(
+    private dataStorageService: DataStorageService,
+    private location: Location,
+  ) {}
 
   async showHistory() {
     this.toShowHistory = true;
@@ -38,11 +41,10 @@ export class HistoryPage implements OnDestroy {
     });
   }
 
-
   backClicked() {
     this.location.back();
   }
-  
+
   ngOnDestroy() {
     this.historySusbcription?.unsubscribe();
   }

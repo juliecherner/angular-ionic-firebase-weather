@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { timer, Subscription } from 'rxjs';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
@@ -41,7 +41,7 @@ export class CurrentWeatherPage implements OnInit, OnDestroy {
     private popupService: PopupService,
     private dataStorageService: DataStorageService,
     private authService: AuthService,
-    private location: Location
+    private location: Location,
   ) {}
 
   async ngOnInit() {
