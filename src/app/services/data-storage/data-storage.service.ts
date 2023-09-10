@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AuthService } from '../auth/auth.service';
-import { Weather } from 'src/app/types/weather';
+import { WeatherReport } from 'src/app/types/weather';
 
 @Injectable({
   providedIn: 'root',
@@ -12,17 +12,23 @@ export class DataStorageService {
     private authService: AuthService,
   ) {}
 
-  async saveCurrentWeatherReport(weatherReport: Weather | null) {
+  async saveCurrentWeatherReport(
+    weatherReport: Partial<WeatherReport> | null,
+    imageUrl: string,
+  ) {
     if (!weatherReport) throw new Error('Get weather!');
 
     const weatherCollection = this.db.list('weatherReports');
 
     const userLogin = await this.authService.getUserLogin();
-    const reportWithUser = Object.assign(weatherReport, { user: userLogin });
+    const reportWithUserAndPicture = Object.assign(weatherReport, {
+      user: userLogin,
+      imageUrl,
+    });
 
-    const documentKey = reportWithUser.timestamp.toString();
+    const documentKey = reportWithUserAndPicture?.timestamp?.toString() || '';
 
-    weatherCollection.set(documentKey, reportWithUser);
+    weatherCollection.set(documentKey, reportWithUserAndPicture);
   }
 
   async getWeatherHistoryByUser() {

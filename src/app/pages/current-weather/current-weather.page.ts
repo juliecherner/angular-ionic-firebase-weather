@@ -9,7 +9,7 @@ import { WeatherService } from 'src/app/services/weather/weather.service';
 import { PopupService } from 'src/app/services/popup/popup.service';
 import { DataStorageService } from 'src/app/services/data-storage/data-storage.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
-//import { ImageStorageService } from 'src/app/services/image-storage/image-storage.service';
+import { ImageStorageService } from 'src/app/services/image-storage/image-storage.service';
 import { ActionResult, POPUP_TYPE } from '../../types/popup';
 import { Weather } from '../../types/weather';
 
@@ -28,6 +28,7 @@ export class CurrentWeatherPage implements OnInit, OnDestroy {
   currentWeather: Subscription | null = null;
   toTakePhoto: boolean = false;
   weather: Weather | null = null;
+  imageUrl: string = '';
   timerPhotoSubscription: Subscription | null = null;
   maxCameraRetries: number = 3;
   timePopupSubscription: Subscription | null = null;
@@ -42,6 +43,7 @@ export class CurrentWeatherPage implements OnInit, OnDestroy {
     private dataStorageService: DataStorageService,
     private authService: AuthService,
     private location: Location,
+    private imageStorageService: ImageStorageService,
   ) {}
 
   async ngOnInit() {
@@ -53,21 +55,20 @@ export class CurrentWeatherPage implements OnInit, OnDestroy {
       const currentPosition =
         await this.geolocationService.getCurrentPosition();
 
+      this.showAndHidePopup(
+        POPUP_TYPE.SUCCESS,
+        'Please submit the photo',
+        3000,
+      );
+
       this.currentWeather = this.weatherService
         .getCurrentByPosition(currentPosition)
         .subscribe({
-          next: (data) => {
+          next: async (data) => {
             this.weather = this.weatherService.transformResult(data);
+            this.takePhoto(3000);
 
-            this.saveWeather();
-            // save results to weather db
-
-            this.showAndHidePopup(
-              POPUP_TYPE.SUCCESS,
-              'Please submit a photo of the sky',
-              5000,
-            );
-            this.takePhoto(5000);
+            await this.saveWeather();
           },
           error: (error: any) => {
             this.showAndHidePopup(POPUP_TYPE.ERROR, error, 5000);
@@ -92,11 +93,17 @@ export class CurrentWeatherPage implements OnInit, OnDestroy {
 
   async takePhoto(delay: number) {
     this.timerPhotoSubscription = timer(delay).subscribe(async () => {
-      this.photoService
+      await this.photoService
         .take()
-        .then((data) => {
-          //save result to photo db
-          console.log('data', data);
+        .then(async (data: any) => {
+          this.imageUrl = data;
+          await this.savePhoto(this.weather?.timestamp || 0, this.imageUrl)
+            .then(() => {
+              this.saveWeather();
+            })
+            .catch((error: any) => {
+              this.showAndHidePopup(POPUP_TYPE.ERROR, error, 3000);
+            });
         })
         .catch((error) => {
           this.handleCameraFailure(error);
@@ -106,31 +113,38 @@ export class CurrentWeatherPage implements OnInit, OnDestroy {
 
   handleCameraFailure(error: string) {
     if (this.maxCameraRetries > 0) {
-      this.showAndHidePopup(POPUP_TYPE.ERROR, error || 'Camera error', 1000);
-
-      this.takePhoto(1000);
-
-      this.maxCameraRetries -= 1;
-    }
-
-    if (this.maxCameraRetries === 0) {
+      const errorText =
+        this.maxCameraRetries === 1
+          ? 'Maximum retry number is exceeded'
+          : error || 'Camera error';
       this.showAndHidePopup(
         POPUP_TYPE.ERROR,
-        'Maximum retry number is exceeded',
+        errorText +
+          ` | Submit photo or you loose data, you have ${this.maxCameraRetries} retries`,
         1000,
       );
-      return;
+
+      if (this.maxCameraRetries !== 1) {
+        this.takePhoto(1000);
+        this.maxCameraRetries -= 1;
+      }
     }
   }
 
-  // async savePhoto() {
-  //   //this.theimageStorageService.save();
-  //   //await this.imageStorageService.save();
-  // }
-
-  saveWeather() {
+  async savePhoto(timestamp: number, file: any) {
     try {
-      this.dataStorageService.saveCurrentWeatherReport(this.weather);
+      this.imageUrl = await this.imageStorageService.save(timestamp, file);
+    } catch (error: any) {
+      this.showAndHidePopup(POPUP_TYPE.ERROR, error, 3000);
+    }
+  }
+
+  async saveWeather() {
+    try {
+      this.dataStorageService.saveCurrentWeatherReport(
+        this.weather,
+        this.imageUrl,
+      );
     } catch (error: any) {
       this.showAndHidePopup(POPUP_TYPE.ERROR, error, 2000);
     }
@@ -139,6 +153,7 @@ export class CurrentWeatherPage implements OnInit, OnDestroy {
   async logout() {
     this.localStorageService.deleteLocalUser();
     this.router.navigate(['/login']);
+    this.ngOnDestroy();
   }
 
   backClicked() {

@@ -13,7 +13,6 @@ export class AppComponent {
     private router: Router,
   ) {
     this.authService.isLoggedIn().then((result: boolean) => {
-      //this.router.navigate(['/tabs'])
       result
         ? this.router.navigate(['/tabs'])
         : this.router.navigate(['/login']);

@@ -54,10 +54,15 @@
         <div class="ion-padding" slot="content">
           Updated: {{report?.lastUpdated }}
         </div>
-        <ion-img
-          src="https://ionicframework.com/docs/api/img"
-          alt="Photo was not added"
-        ></ion-img>
+        <div class="ion-padding" slot="content">
+          Sky photo. To see in full size, click on the photo.
+          <ion-img
+            class="weather-report-image"
+            [src]="report.imageUrl"
+            alt="Photo was not added"
+            (click)="seeFullPhoto(report.imageUrl)"
+          ></ion-img>
+        </div>
       </ion-accordion>
     </ion-accordion-group>
   </ion-list>

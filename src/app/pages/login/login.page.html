@@ -53,6 +53,12 @@
       labelPlacement="end"
       >I agree with terms and conditions</ion-checkbox
     >
+    <ion-note
+      *ngIf="!modeIsSignIn && !toRestore"
+      color="tertiary"
+      (click)="openConditions()"
+      >Read conditions</ion-note
+    >
 
     <ion-text *ngIf="customValidation?.data?.agreement?.error" color="danger"
       >{{" "}}{{customValidation?.data?.agreement?.text}}</ion-text

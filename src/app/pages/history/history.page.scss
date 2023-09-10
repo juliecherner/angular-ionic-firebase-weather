@@ -12,4 +12,10 @@ ion-content {
     flex-direction: column;
     align-items: center;
   }
+
+  .weather-report-image {
+    border: 4px solid blue;
+    height: 90px;
+    width: 80px;
+  }
 }

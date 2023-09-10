@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Browser } from '@capacitor/browser';
 import { timer, Subscription } from 'rxjs';
 import { ValidationService } from '../../services/validation/validation.service';
 import { AuthService } from '../../services/auth/auth.service';
@@ -138,6 +139,10 @@ export class LoginPage implements OnDestroy {
     }
 
     this.isLoading = false;
+  }
+
+  async openConditions() {
+    await Browser.open({ url: 'http://capacitorjs.com/' });
   }
 
   ngOnDestroy() {

@@ -4,9 +4,9 @@ Used techonologies:
 
 - Ionic 7 with Angular 16
 - [@angular/fire](https://github.com/angular/angularfire)
-- Capacitors plugins: Geolocation, Camera and [@ionic/storage-angular](https://github.com/ionic-team/ionic-storage)
+- Capacitors plugins: Geolocation, Camera, Browser and [@ionic/storage-angular](https://github.com/ionic-team/ionic-storage)
 
-- Firebase services: Authentication, Realtime Database, Firebase Storage (for images)
+- Firebase services: Authentication, Realtime Database, Firebase Storage (for images, CORS disabled)
 
 Angular project includes:
 

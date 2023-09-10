@@ -7,6 +7,10 @@ export type Weather = {
   main: TemperatureCelsius;
 };
 
+export interface WeatherReport extends Weather {
+  imageUrl: string;
+}
+
 type TemperatureCelsius = {
   feels_like: number;
   humidity: number;

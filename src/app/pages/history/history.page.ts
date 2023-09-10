@@ -1,8 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
+import { Browser } from '@capacitor/browser';
 import { Subscription } from 'rxjs';
 import { DataStorageService } from 'src/app/services/data-storage/data-storage.service';
-import { Weather } from '../../types/weather';
+import { WeatherReport } from '../../types/weather';
 
 @Component({
   selector: 'app-history',
@@ -11,11 +12,10 @@ import { Weather } from '../../types/weather';
 })
 export class HistoryPage implements OnDestroy {
   toShowHistory: boolean = false;
-  historyReports: Weather[] = [];
+  historyReports: WeatherReport[] = [];
   historySusbcription: Subscription | null = null;
   isLoading: boolean = false;
-  filePath: string =
-    'https://www.vecteezy.com/photo/24298640-panoramic-picture-from-gardens-by-the-bay-in-singapore-during-daytime';
+
   constructor(
     private dataStorageService: DataStorageService,
     private location: Location,
@@ -43,6 +43,10 @@ export class HistoryPage implements OnDestroy {
 
   backClicked() {
     this.location.back();
+  }
+
+  async seeFullPhoto(imageUrl: string) {
+    await Browser.open({ url: imageUrl });
   }
 
   ngOnDestroy() {
